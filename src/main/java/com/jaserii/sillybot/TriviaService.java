@@ -14,6 +14,9 @@ public class TriviaService {
     final String IO_ERR = "IO_ERR";
     final String INTERRUPT_ERR = "INTERRUPT_ERR";
 
+
+    /// Gather a random fact using Open Trivia DB API
+    /// @return String fact
     public String getTrivia() {
         String apiUrl = System.getenv("TRIVIA_API_URL");
 
@@ -73,15 +76,15 @@ public class TriviaService {
         ObjectMapper objectMapper = new ObjectMapper();
         JsonNode root = objectMapper.readTree(responseBody);
 
-        JsonNode firstResult = root
+        JsonNode results = root
                 .get("results")
                 .get(0);
 
-        String question = firstResult
+        String question = results
                 .get("question")
                 .asText();
 
-        String correctAnswer = firstResult
+        String correctAnswer = results
                 .get("correct_answer")
                 .asText();
 
