@@ -25,6 +25,7 @@ public class TriviaService {
         }
 
         String response = getResult(apiUrl);
+        System.out.println(response);
         switch (response) {
             case IO_ERR:
                 return "Erhm... IO Error!";
@@ -80,6 +81,8 @@ public class TriviaService {
                 .get("results")
                 .get(0);
 
+        String suffix = (results.get("type").asText().equals("boolean")) ? " (T/F) " : "";
+
         String question = results
                 .get("question")
                 .asText();
@@ -88,6 +91,6 @@ public class TriviaService {
                 .get("correct_answer")
                 .asText();
 
-        return question + " \n||" + correctAnswer + "||";
+        return question + suffix + " \n||" + correctAnswer + "||";
     }
 }
