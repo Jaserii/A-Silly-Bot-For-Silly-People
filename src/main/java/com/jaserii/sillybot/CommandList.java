@@ -8,6 +8,8 @@ import org.slf4j.LoggerFactory;
 
 public class CommandList extends ListenerAdapter {
     private static final Logger logger = LoggerFactory.getLogger(CommandList.class);
+    private TriviaService triviaService = new TriviaService();
+    private ScryfallService scryfallService = new ScryfallService();
 
     @Override
     public void onSlashCommandInteraction(SlashCommandInteractionEvent event) {
@@ -16,7 +18,7 @@ public class CommandList extends ListenerAdapter {
                 event.reply("Blehhhhhh").queue();
                 break;
             case "trivia":
-                String fact = StringEscapeUtils.unescapeHtml4(new TriviaService().getTrivia());
+                String fact = StringEscapeUtils.unescapeHtml4(triviaService.getTrivia());
                 logger.info(fact);
                 event.reply(fact).queue();
                 break;
