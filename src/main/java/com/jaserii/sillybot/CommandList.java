@@ -23,13 +23,21 @@ public class CommandList extends ListenerAdapter {
                 logger.info(fact);
                 event.reply(fact).queue();
                 break;
-            case "mtg":
+            case "mtg_search":
                 String query = (event.getOption("query") != null) ? event.getOption("query").getAsString() : "";
                 if (query.isBlank())
                     event.reply("Please input something. ANYTHING!").queue();
                 else
                     event.getHook().sendMessage(scryfallService.getScryfallURL(query)).queue();
                 break;
+            case "mtg_help":
+                query = (event.getOption("query") != null) ? event.getOption("query").getAsString() : "";
+                if (query.isBlank())
+                    event.reply("Please input something. ANYTHING!").queue();
+                else
+                    event.getHook().sendMessage(scryfallService.getMTGHelp(query)).queue();
+                break;
+
         }
     }
 }
