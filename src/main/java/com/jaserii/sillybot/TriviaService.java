@@ -3,6 +3,8 @@ package com.jaserii.sillybot;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
 import java.net.URI;
@@ -13,7 +15,7 @@ import java.net.http.HttpResponse;
 public class TriviaService {
     final String IO_ERR = "IO_ERR";
     final String INTERRUPT_ERR = "INTERRUPT_ERR";
-
+    private static final Logger logger = LoggerFactory.getLogger(TriviaService.class);
 
     /// Gather a random fact using Open Trivia DB API
     /// @return String fact
@@ -25,7 +27,7 @@ public class TriviaService {
         }
 
         String response = getResult(apiUrl);
-        System.out.println(response);
+        logger.info(response);
         switch (response) {
             case IO_ERR:
                 return "Erhm... IO Error!";
