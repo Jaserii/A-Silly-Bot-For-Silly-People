@@ -13,6 +13,7 @@ public class CommandList extends ListenerAdapter {
 
     @Override
     public void onSlashCommandInteraction(SlashCommandInteractionEvent event) {
+        event.deferReply().queue();
         switch (event.getName()) {
             case "say":
                 event.reply("Blehhhhhh").queue();
@@ -21,6 +22,13 @@ public class CommandList extends ListenerAdapter {
                 String fact = StringEscapeUtils.unescapeHtml4(triviaService.getTrivia());
                 logger.info(fact);
                 event.reply(fact).queue();
+                break;
+            case "mtg":
+                String query = (event.getOption("query") != null) ? event.getOption("query").getAsString() : "";
+                if (query.isBlank())
+                    event.reply("Please input something. ANYTHING!").queue();
+                else
+                    event.getHook().sendMessage(scryfallService.getScryfallURL(query)).queue();
                 break;
         }
     }
