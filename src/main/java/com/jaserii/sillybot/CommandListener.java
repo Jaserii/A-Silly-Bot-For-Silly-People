@@ -1,6 +1,7 @@
 package com.jaserii.sillybot;
 
 import com.jaserii.sillybot.discord_commands.IDiscordCommand;
+import com.jaserii.sillybot.discord_commands.ScryfallCmd;
 import com.jaserii.sillybot.discord_commands.TriviaCmd;
 import net.dv8tion.jda.api.events.interaction.command.SlashCommandInteractionEvent;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
@@ -16,6 +17,7 @@ public class CommandListener extends ListenerAdapter {
 
     public CommandListener() {
         registerCommand(new TriviaCmd());
+        registerCommand(new ScryfallCmd());
     }
 
     private void registerCommand(IDiscordCommand cmd) {

@@ -60,13 +60,14 @@ public class CommandList extends ListenerAdapter {
                     event.getHook().sendMessage(scryfallService.getScryfallURL(query)).queue();
                 break;
 
+                /*
             case "mtg_help":
                 query = (event.getOption("query") != null) ? event.getOption("query").getAsString() : "";
                 if (query.isBlank())
                     event.getHook().sendMessage("Please input something. ANYTHING!").queue();
                 else
                     event.getHook().sendMessage(scryfallService.getMTGHelp(query)).queue();
-                break;
+                break; */
 
             case "play":
                 query = (event.getOption("query") != null) ? event.getOption("query").getAsString() : "";

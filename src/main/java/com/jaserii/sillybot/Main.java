@@ -45,7 +45,7 @@ public class Main {
 
         commandList.setJDA(api, client);
         api.updateCommands().addCommands(commandListener.getDiscordCommandData()).queue();
-        
+
         /*
         api.updateCommands().addCommands(
                 Commands.slash("say", "Says Blehhhhhh"),
