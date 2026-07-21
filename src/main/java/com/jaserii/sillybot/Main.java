@@ -25,25 +25,25 @@ public class Main {
     static void main() throws LoginException, InterruptedException {
         String botToken = System.getenv("BOT_TOKEN");
 
-        LavalinkClient client = new LavalinkClient(
+        LavalinkClient lavalinkClient = new LavalinkClient(
                 Helpers.getUserIdFromToken(botToken)
         );
-        client.getLoadBalancer().addPenaltyProvider(new VoiceRegionPenaltyProvider());
+        lavalinkClient.getLoadBalancer().addPenaltyProvider(new VoiceRegionPenaltyProvider());
 
-        registerLavalinkListeners(client);
-        registerLavalinkNodes(client);
+        registerLavalinkListeners(lavalinkClient);
+        registerLavalinkNodes(lavalinkClient);
 
         commandList = new CommandList();
 
-        CommandListener commandListener = new CommandListener();
+        CommandListener commandListener = new CommandListener(lavalinkClient);
         JDA api = JDABuilder.createDefault(botToken)
                 //.addEventListeners(commandList)
                 .addEventListeners(commandListener)
-                .setVoiceDispatchInterceptor(new JDAVoiceUpdateListener(client))
+                .setVoiceDispatchInterceptor(new JDAVoiceUpdateListener(lavalinkClient))
                 .build()
                 .awaitReady();
 
-        commandList.setJDA(api, client);
+        commandList.setJDA(api, lavalinkClient);
         api.updateCommands().addCommands(commandListener.getDiscordCommandData()).queue();
 
         /*

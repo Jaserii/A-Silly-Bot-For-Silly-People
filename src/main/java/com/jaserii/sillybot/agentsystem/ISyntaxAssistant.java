@@ -1,4 +1,4 @@
-package com.jaserii.sillybot.gemini_assistants;
+package com.jaserii.sillybot.agentsystem;
 
 import dev.langchain4j.service.SystemMessage;
 

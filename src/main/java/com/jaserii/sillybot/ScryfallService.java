@@ -1,7 +1,6 @@
 package com.jaserii.sillybot;
 
-import com.jaserii.sillybot.gemini_assistants.IHelpAssistant;
-import com.jaserii.sillybot.gemini_assistants.ISyntaxAssistant;
+import com.jaserii.sillybot.agentsystem.ISyntaxAssistant;
 import dev.langchain4j.exception.HttpException;
 import dev.langchain4j.model.chat.ChatModel;
 import dev.langchain4j.model.googleai.GoogleAiGeminiChatModel;

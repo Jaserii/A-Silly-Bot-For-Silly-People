@@ -1,8 +1,10 @@
 package com.jaserii.sillybot;
 
 import com.jaserii.sillybot.discord_commands.IDiscordCommand;
+import com.jaserii.sillybot.discord_commands.PlayCmd;
 import com.jaserii.sillybot.discord_commands.ScryfallCmd;
 import com.jaserii.sillybot.discord_commands.TriviaCmd;
+import dev.arbjerg.lavalink.client.LavalinkClient;
 import net.dv8tion.jda.api.events.interaction.command.SlashCommandInteractionEvent;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
 import net.dv8tion.jda.api.interactions.commands.build.SlashCommandData;
@@ -15,9 +17,11 @@ import java.util.Map;
 public class CommandListener extends ListenerAdapter {
     private final Map<String, IDiscordCommand> commands = new HashMap<>();
 
-    public CommandListener() {
+    /// Update constructor with each new command
+    public CommandListener(LavalinkClient lavalinkClient) {
         registerCommand(new TriviaCmd());
         registerCommand(new ScryfallCmd());
+        registerCommand(new PlayCmd(lavalinkClient));
     }
 
     private void registerCommand(IDiscordCommand cmd) {
