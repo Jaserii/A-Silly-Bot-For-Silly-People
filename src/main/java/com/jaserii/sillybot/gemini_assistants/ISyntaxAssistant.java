@@ -1,8 +1,8 @@
-package com.jaserii.sillybot.interfaces;
+package com.jaserii.sillybot.gemini_assistants;
 
 import dev.langchain4j.service.SystemMessage;
 
-public interface SyntaxAssistant {
+public interface ISyntaxAssistant {
     @SystemMessage("""
         Convert user question to Scryfall search syntax: https://scryfall.com/docs/syntax
         

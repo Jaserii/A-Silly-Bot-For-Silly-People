@@ -1,7 +1,7 @@
 package com.jaserii.sillybot;
 
-import com.jaserii.sillybot.interfaces.HelpAssistant;
-import com.jaserii.sillybot.interfaces.SyntaxAssistant;
+import com.jaserii.sillybot.gemini_assistants.IHelpAssistant;
+import com.jaserii.sillybot.gemini_assistants.ISyntaxAssistant;
 import dev.langchain4j.model.chat.ChatModel;
 import dev.langchain4j.model.googleai.GoogleAiGeminiChatModel;
 import dev.langchain4j.service.AiServices;
@@ -10,7 +10,6 @@ import org.slf4j.LoggerFactory;
 
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
-import java.time.Duration;
 
 /// Uses an OpenAI-compatible API to decipher natural language,
 /// converting it to Scryfall's search params and returning a URL.
@@ -18,8 +17,8 @@ public class ScryfallService {
     private static final Logger logger = LoggerFactory.getLogger(ScryfallService.class);
     private ChatModel syntaxModel;
     private ChatModel helpModel;
-    private SyntaxAssistant syntaxAssistant;
-    private HelpAssistant helpAssistant;
+    private ISyntaxAssistant syntaxAssistant;
+    private IHelpAssistant helpAssistant;
 
     public ScryfallService() {
 
@@ -49,8 +48,8 @@ public class ScryfallService {
                 .returnThinking(false)
                 .build();
 
-        syntaxAssistant = AiServices.create(SyntaxAssistant.class, syntaxModel);
-        helpAssistant = AiServices.create(HelpAssistant.class, helpModel);
+        syntaxAssistant = AiServices.create(ISyntaxAssistant.class, syntaxModel);
+        helpAssistant = AiServices.create(IHelpAssistant.class, helpModel);
     }
 
     /// Returns a URL containing cards matching user request.

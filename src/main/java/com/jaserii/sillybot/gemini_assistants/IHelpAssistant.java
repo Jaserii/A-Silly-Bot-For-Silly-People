@@ -1,8 +1,8 @@
-package com.jaserii.sillybot.interfaces;
+package com.jaserii.sillybot.gemini_assistants;
 
 import dev.langchain4j.service.SystemMessage;
 
-public interface HelpAssistant {
+public interface IHelpAssistant {
     @SystemMessage("""
         CRITICAL: Only answer questions related to Magic: The Gathering. Keep answers short and concise.
         

@@ -23,6 +23,7 @@ public class Main {
 
     static void main() throws LoginException, InterruptedException {
         String botToken = System.getenv("BOT_TOKEN");
+
         LavalinkClient client = new LavalinkClient(
                 Helpers.getUserIdFromToken(botToken)
         );
@@ -34,7 +35,7 @@ public class Main {
         commandList = new CommandList();
 
         JDA api = JDABuilder.createDefault(botToken)
-                .addEventListeners(commandList)
+                .addEventListeners(commandList, new TriviaService())
                 .setVoiceDispatchInterceptor(new JDAVoiceUpdateListener(client))
                 .build()
                 .awaitReady();
