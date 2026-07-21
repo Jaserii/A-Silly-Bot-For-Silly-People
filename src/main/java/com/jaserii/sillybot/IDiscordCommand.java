@@ -1,4 +1,4 @@
-package com.jaserii.sillybot.discord_commands;
+package com.jaserii.sillybot;
 
 import net.dv8tion.jda.api.events.interaction.command.SlashCommandInteractionEvent;
 import net.dv8tion.jda.api.interactions.commands.build.SlashCommandData;
