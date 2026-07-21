@@ -1,8 +1,7 @@
-package com.jaserii.sillybot.lavalink;
+package com.jaserii.sillybot.lavalink.sample;
 
 import dev.arbjerg.lavalink.client.AbstractAudioLoadResultHandler;
 import dev.arbjerg.lavalink.client.player.*;
-import me.duncte123.testbot.MyUserData;
 import net.dv8tion.jda.api.events.interaction.command.SlashCommandInteractionEvent;
 import org.jetbrains.annotations.NotNull;
 

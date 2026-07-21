@@ -1,6 +1,6 @@
-package com.jaserii.sillybot;
+package com.jaserii.sillybot.lavalink;
 
-import com.jaserii.sillybot.lavalink.GuildMusicManager;
+import com.jaserii.sillybot.lavalink.sample.GuildMusicManager;
 import dev.arbjerg.lavalink.client.LavalinkClient;
 
 import java.util.HashMap;
@@ -29,9 +29,11 @@ public class LavalinkService {
             var mng = musicManagers.get(guildId);
 
             if (mng == null) {
+                System.out.println("mng is null");
                 mng = new GuildMusicManager(guildId, lavalinkClient);
                 musicManagers.put(guildId, mng);
             }
+
 
             return mng;
         }

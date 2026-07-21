@@ -1,4 +1,4 @@
-package com.jaserii.sillybot.lavalink;
+package com.jaserii.sillybot.lavalink.sample;
 
 import dev.arbjerg.lavalink.client.player.Track;
 import dev.arbjerg.lavalink.protocol.v4.Message;
@@ -54,9 +54,7 @@ public class TrackScheduler {
         if (endReason.getMayStartNext()) {
             final var nextTrack = this.queue.poll();
 
-            if (nextTrack != null) {
-                this.startTrack(nextTrack);
-            }
+            this.startTrack(nextTrack);
         }
     }
 

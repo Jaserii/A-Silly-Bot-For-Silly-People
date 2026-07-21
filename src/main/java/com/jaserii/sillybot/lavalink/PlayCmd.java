@@ -1,8 +1,7 @@
-package com.jaserii.sillybot.discord_commands;
+package com.jaserii.sillybot.lavalink;
 
-import com.jaserii.sillybot.LavalinkService;
-import com.jaserii.sillybot.lavalink.AudioLoader;
-import com.jaserii.sillybot.lavalink.GuildMusicManager;
+import com.jaserii.sillybot.discord_commands.IDiscordCommand;
+import com.jaserii.sillybot.lavalink.sample.AudioLoader;
 import dev.arbjerg.lavalink.client.LavalinkClient;
 import dev.arbjerg.lavalink.client.Link;
 import net.dv8tion.jda.api.JDA;
@@ -16,9 +15,6 @@ import net.dv8tion.jda.api.interactions.commands.build.SlashCommandData;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.util.HashMap;
-import java.util.Map;
-
 public class PlayCmd implements IDiscordCommand {
     private static final Logger logger = LoggerFactory.getLogger(PlayCmd.class);
 
@@ -29,8 +25,8 @@ public class PlayCmd implements IDiscordCommand {
 
     private LavalinkService lavalinkService;
 
-    public PlayCmd(LavalinkClient lavalinkClient) {
-        lavalinkService = new LavalinkService(lavalinkClient);
+    public PlayCmd(LavalinkService lavalinkService) {
+        this.lavalinkService = lavalinkService;
     }
 
     @Override
