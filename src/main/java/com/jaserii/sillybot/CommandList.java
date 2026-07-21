@@ -49,13 +49,13 @@ public class CommandList extends ListenerAdapter {
             case "trivia":
                 String fact = StringEscapeUtils.unescapeHtml4(triviaService.getTrivia());
                 logger.info(fact);
-                event.reply(fact).queue();
+                event.getHook().sendMessage(fact).queue();
                 break;
 
             case "mtg_search":
                 String query = (event.getOption("query") != null) ? event.getOption("query").getAsString() : "";
                 if (query.isBlank())
-                    event.reply("Please input something. ANYTHING!").queue();
+                    event.getHook().sendMessage("Please input something. ANYTHING!").queue();
                 else
                     event.getHook().sendMessage(scryfallService.getScryfallURL(query)).queue();
                 break;
@@ -63,7 +63,7 @@ public class CommandList extends ListenerAdapter {
             case "mtg_help":
                 query = (event.getOption("query") != null) ? event.getOption("query").getAsString() : "";
                 if (query.isBlank())
-                    event.reply("Please input something. ANYTHING!").queue();
+                    event.getHook().sendMessage("Please input something. ANYTHING!").queue();
                 else
                     event.getHook().sendMessage(scryfallService.getMTGHelp(query)).queue();
                 break;
@@ -72,7 +72,7 @@ public class CommandList extends ListenerAdapter {
                 query = (event.getOption("query") != null) ? event.getOption("query").getAsString() : "";
 
                 if (query.isBlank()) {
-                    event.reply("Please input something. ANYTHING!").queue();
+                    event.getHook().sendMessage("Please input something. ANYTHING!").queue();
                     return;
                 }
 
@@ -94,12 +94,22 @@ public class CommandList extends ListenerAdapter {
                 break;
 
             case "stop":
+                GuildVoiceState selfVoiceState = guild.getSelfMember().getVoiceState();
+                if (selfVoiceState == null || !selfVoiceState.inAudioChannel()) {
+                    event.getHook().sendMessage("I'm not even in vc dawg").queue();
+                    break;
+                }
                 event.getHook().sendMessage("Stopped the current track and clearing the queue").queue();
                 this.getOrCreateMusicManager(event.getGuild().getIdLong()).stop();
                 event.getJDA().getDirectAudioController().disconnect(guild);
                 break;
 
             case "pause":
+                selfVoiceState = guild.getSelfMember().getVoiceState();
+                if (selfVoiceState == null || !selfVoiceState.inAudioChannel()) {
+                    event.getHook().sendMessage("I'm not even in vc dawg").queue();
+                    break;
+                }
                 this.client.getOrCreateLink(guild.getIdLong())
                         .getPlayer()
                         .flatMap((player) -> player.setPaused(!player.getPaused()))
@@ -109,13 +119,26 @@ public class CommandList extends ListenerAdapter {
                 break;
 
             case "skip":
+                selfVoiceState = guild.getSelfMember().getVoiceState();
+                if (selfVoiceState == null || !selfVoiceState.inAudioChannel()) {
+                    event.getHook().sendMessage("I'm not even in vc dawg").queue();
+                    break;
+                }
                 this.getOrCreateMusicManager(event.getGuild().getIdLong()).skip();
-                this.getOrCreateMusicManager(event.getGuild().getIdLong()).getPlayer().ifPresent(
-                    (player) -> {
-                        event.getHook().sendMessage("Skipping current track...").queue();
-                        event.getHook().sendMessage("Now playing: " + player.getTrack().getInfo().getTitle()).delay(Duration.ofSeconds(3)).queue();
-                    }
-                );
+                event.getHook().sendMessage("Skipping current song").queue();
+                break;
+
+            case "track":
+                selfVoiceState = guild.getSelfMember().getVoiceState();
+                if (selfVoiceState == null || !selfVoiceState.inAudioChannel()) {
+                    event.getHook().sendMessage("I'm not even in vc dawg").queue();
+                    break;
+                }
+                this.client.getOrCreateLink(guild.getIdLong())
+                        .getPlayer()
+                        .subscribe((player) -> {
+                            event.getHook().sendMessage(player.getTrack().getInfo().getTitle()).queue();
+                        });
                 break;
         }
     }

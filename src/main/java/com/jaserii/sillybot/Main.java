@@ -52,7 +52,8 @@ public class Main {
                         .addOption(OptionType.STRING, "query", "URL or name"),
                 Commands.slash("stop", "End audio"),
                 Commands.slash("pause", "(Un)Pause audio"),
-                Commands.slash("skip", "Play the next track if available")
+                Commands.slash("skip", "Play the next track if available"),
+                Commands.slash("track", "Get the current name of the track")
         ).queue();
     }
 
