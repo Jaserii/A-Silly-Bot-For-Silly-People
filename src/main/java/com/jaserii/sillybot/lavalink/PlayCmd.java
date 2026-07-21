@@ -1,8 +1,7 @@
 package com.jaserii.sillybot.lavalink;
 
-import com.jaserii.sillybot.discord_commands.IDiscordCommand;
+import com.jaserii.sillybot.IDiscordCommand;
 import com.jaserii.sillybot.lavalink.sample.AudioLoader;
-import dev.arbjerg.lavalink.client.LavalinkClient;
 import dev.arbjerg.lavalink.client.Link;
 import net.dv8tion.jda.api.JDA;
 import net.dv8tion.jda.api.entities.Guild;

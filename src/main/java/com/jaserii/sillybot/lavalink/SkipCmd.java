@@ -1,8 +1,6 @@
 package com.jaserii.sillybot.lavalink;
 
-import com.jaserii.sillybot.discord_commands.IDiscordCommand;
-import dev.arbjerg.lavalink.client.LavalinkClient;
-import net.dv8tion.jda.api.JDA;
+import com.jaserii.sillybot.IDiscordCommand;
 import net.dv8tion.jda.api.entities.Guild;
 import net.dv8tion.jda.api.entities.GuildVoiceState;
 import net.dv8tion.jda.api.events.interaction.command.SlashCommandInteractionEvent;

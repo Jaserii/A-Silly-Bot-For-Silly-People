@@ -1,6 +1,5 @@
 package com.jaserii.sillybot;
 
-import com.jaserii.sillybot.discord_commands.IDiscordCommand;
 import com.jaserii.sillybot.lavalink.*;
 import com.jaserii.sillybot.scryfall.ScryfallCmd;
 import com.jaserii.sillybot.trivia.TriviaCmd;

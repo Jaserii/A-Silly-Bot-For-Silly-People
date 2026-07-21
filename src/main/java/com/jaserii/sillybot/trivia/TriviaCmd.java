@@ -1,6 +1,6 @@
 package com.jaserii.sillybot.trivia;
 
-import com.jaserii.sillybot.discord_commands.IDiscordCommand;
+import com.jaserii.sillybot.IDiscordCommand;
 import net.dv8tion.jda.api.events.interaction.command.SlashCommandInteractionEvent;
 import net.dv8tion.jda.api.interactions.commands.build.Commands;
 import net.dv8tion.jda.api.interactions.commands.build.SlashCommandData;
