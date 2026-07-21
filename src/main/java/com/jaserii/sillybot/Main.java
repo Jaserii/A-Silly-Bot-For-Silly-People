@@ -35,14 +35,18 @@ public class Main {
 
         commandList = new CommandList();
 
+        CommandListener commandListener = new CommandListener();
         JDA api = JDABuilder.createDefault(botToken)
-                .addEventListeners(commandList)
+                //.addEventListeners(commandList)
+                .addEventListeners(commandListener)
                 .setVoiceDispatchInterceptor(new JDAVoiceUpdateListener(client))
                 .build()
                 .awaitReady();
 
         commandList.setJDA(api, client);
-
+        api.updateCommands().addCommands(commandListener.getDiscordCommandData()).queue();
+        
+        /*
         api.updateCommands().addCommands(
                 Commands.slash("say", "Says Blehhhhhh"),
                 new TriviaCmd().getCommandData(),
@@ -57,7 +61,7 @@ public class Main {
                 Commands.slash("pause", "(Un)Pause audio"),
                 Commands.slash("skip", "Play the next track if available"),
                 Commands.slash("track", "Get the current name of the track")
-        ).queue();
+        ).queue(); */
     }
 
     private static void registerLavalinkNodes(LavalinkClient client) {
