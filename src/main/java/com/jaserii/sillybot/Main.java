@@ -1,6 +1,5 @@
 package com.jaserii.sillybot;
 
-import com.jaserii.sillybot.discord_commands.TriviaCmd;
 import dev.arbjerg.lavalink.client.Helpers;
 import dev.arbjerg.lavalink.client.LavalinkClient;
 import dev.arbjerg.lavalink.client.LavalinkNode;
@@ -10,8 +9,6 @@ import dev.arbjerg.lavalink.client.loadbalancing.builtin.VoiceRegionPenaltyProvi
 import dev.arbjerg.lavalink.libraries.jda.JDAVoiceUpdateListener;
 import net.dv8tion.jda.api.JDA;
 import net.dv8tion.jda.api.JDABuilder;
-import net.dv8tion.jda.api.interactions.commands.OptionType;
-import net.dv8tion.jda.api.interactions.commands.build.Commands;
 
 import javax.security.auth.login.LoginException;
 import java.util.List;

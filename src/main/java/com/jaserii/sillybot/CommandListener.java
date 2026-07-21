@@ -2,8 +2,8 @@ package com.jaserii.sillybot;
 
 import com.jaserii.sillybot.discord_commands.IDiscordCommand;
 import com.jaserii.sillybot.lavalink.*;
-import com.jaserii.sillybot.discord_commands.ScryfallCmd;
-import com.jaserii.sillybot.discord_commands.TriviaCmd;
+import com.jaserii.sillybot.scryfall.ScryfallCmd;
+import com.jaserii.sillybot.trivia.TriviaCmd;
 import dev.arbjerg.lavalink.client.LavalinkClient;
 import net.dv8tion.jda.api.events.interaction.command.SlashCommandInteractionEvent;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
