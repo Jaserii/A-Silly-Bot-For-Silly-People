@@ -1,6 +1,6 @@
-package com.jaserii.sillybot.discord_commands;
+package com.jaserii.sillybot.trivia;
 
-import com.jaserii.sillybot.TriviaService;
+import com.jaserii.sillybot.discord_commands.IDiscordCommand;
 import net.dv8tion.jda.api.events.interaction.command.SlashCommandInteractionEvent;
 import net.dv8tion.jda.api.interactions.commands.build.Commands;
 import net.dv8tion.jda.api.interactions.commands.build.SlashCommandData;
@@ -8,7 +8,7 @@ import org.apache.commons.text.StringEscapeUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class TriviaCmd implements IDiscordCommand{
+public class TriviaCmd implements IDiscordCommand {
     private static final Logger logger = LoggerFactory.getLogger(TriviaCmd.class);
 
     private String name = "trivia";

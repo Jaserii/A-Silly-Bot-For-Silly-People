@@ -2,6 +2,8 @@ package com.jaserii.sillybot;
 
 import com.jaserii.sillybot.lavalink.sample.AudioLoader;
 import com.jaserii.sillybot.lavalink.sample.GuildMusicManager;
+import com.jaserii.sillybot.scryfall.ScryfallService;
+import com.jaserii.sillybot.trivia.TriviaService;
 import dev.arbjerg.lavalink.client.LavalinkClient;
 import dev.arbjerg.lavalink.client.Link;
 import net.dv8tion.jda.api.JDA;

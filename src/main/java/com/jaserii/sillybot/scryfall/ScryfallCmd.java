@@ -1,6 +1,6 @@
-package com.jaserii.sillybot.discord_commands;
+package com.jaserii.sillybot.scryfall;
 
-import com.jaserii.sillybot.ScryfallService;
+import com.jaserii.sillybot.discord_commands.IDiscordCommand;
 import net.dv8tion.jda.api.events.interaction.command.SlashCommandInteractionEvent;
 import net.dv8tion.jda.api.interactions.commands.OptionType;
 import net.dv8tion.jda.api.interactions.commands.build.Commands;

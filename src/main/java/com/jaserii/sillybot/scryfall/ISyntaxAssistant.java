@@ -1,4 +1,4 @@
-package com.jaserii.sillybot.agentsystem;
+package com.jaserii.sillybot.scryfall;
 
 import dev.langchain4j.service.SystemMessage;
 

@@ -1,6 +1,5 @@
-package com.jaserii.sillybot;
+package com.jaserii.sillybot.scryfall;
 
-import com.jaserii.sillybot.agentsystem.ISyntaxAssistant;
 import dev.langchain4j.exception.HttpException;
 import dev.langchain4j.model.chat.ChatModel;
 import dev.langchain4j.model.googleai.GoogleAiGeminiChatModel;
