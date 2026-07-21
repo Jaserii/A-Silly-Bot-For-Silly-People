@@ -1,12 +1,9 @@
 package com.jaserii.sillybot;
 
 import com.jaserii.sillybot.discord_commands.IDiscordCommand;
-import com.jaserii.sillybot.lavalink.LavalinkService;
-import com.jaserii.sillybot.lavalink.PlayCmd;
+import com.jaserii.sillybot.lavalink.*;
 import com.jaserii.sillybot.discord_commands.ScryfallCmd;
 import com.jaserii.sillybot.discord_commands.TriviaCmd;
-import com.jaserii.sillybot.lavalink.SkipCmd;
-import com.jaserii.sillybot.lavalink.sample.StopCmd;
 import dev.arbjerg.lavalink.client.LavalinkClient;
 import net.dv8tion.jda.api.events.interaction.command.SlashCommandInteractionEvent;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
@@ -29,6 +26,8 @@ public class CommandListener extends ListenerAdapter {
         registerCommand(new PlayCmd(lavalinkService));
         registerCommand(new SkipCmd(lavalinkService));
         registerCommand(new StopCmd(lavalinkService));
+        registerCommand(new PauseCmd(lavalinkService));
+        registerCommand(new TrackCmd(lavalinkService));
     }
 
     private void registerCommand(IDiscordCommand cmd) {
@@ -53,8 +52,4 @@ public class CommandListener extends ListenerAdapter {
             command.execute(event);
         }
     }
-
-
-
-
 }

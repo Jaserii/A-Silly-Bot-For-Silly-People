@@ -1,8 +1,6 @@
-package com.jaserii.sillybot.lavalink.sample;
+package com.jaserii.sillybot.lavalink;
 
 import com.jaserii.sillybot.discord_commands.IDiscordCommand;
-import com.jaserii.sillybot.lavalink.LavalinkService;
-import com.jaserii.sillybot.lavalink.SkipCmd;
 import net.dv8tion.jda.api.entities.Guild;
 import net.dv8tion.jda.api.entities.GuildVoiceState;
 import net.dv8tion.jda.api.events.interaction.command.SlashCommandInteractionEvent;
@@ -41,7 +39,7 @@ public class StopCmd implements IDiscordCommand {
     @Override
     public void execute(SlashCommandInteractionEvent commandEvent) {
         commandEvent.deferReply().queue();
-        
+
         Guild guild = commandEvent.getGuild();
         GuildVoiceState selfVoiceState = guild.getSelfMember().getVoiceState();
 
