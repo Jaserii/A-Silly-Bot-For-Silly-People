@@ -46,6 +46,11 @@ public class CommandList extends ListenerAdapter {
                 event.reply("Blehhhhhh").queue();
                 break;
 
+            case "trivia":
+                String fact = StringEscapeUtils.unescapeHtml4(triviaService.getTrivia());
+                logger.info(fact);
+                event.getHook().sendMessage(fact).queue();
+                break;
 
             case "mtg_search":
                 String query = (event.getOption("query") != null) ? event.getOption("query").getAsString() : "";

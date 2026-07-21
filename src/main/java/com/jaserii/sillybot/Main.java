@@ -1,5 +1,6 @@
 package com.jaserii.sillybot;
 
+import com.jaserii.sillybot.discord_commands.TriviaCmd;
 import dev.arbjerg.lavalink.client.Helpers;
 import dev.arbjerg.lavalink.client.LavalinkClient;
 import dev.arbjerg.lavalink.client.LavalinkNode;
@@ -35,7 +36,7 @@ public class Main {
         commandList = new CommandList();
 
         JDA api = JDABuilder.createDefault(botToken)
-                .addEventListeners(commandList, new TriviaService())
+                .addEventListeners(commandList)
                 .setVoiceDispatchInterceptor(new JDAVoiceUpdateListener(client))
                 .build()
                 .awaitReady();
@@ -44,7 +45,8 @@ public class Main {
 
         api.updateCommands().addCommands(
                 Commands.slash("say", "Says Blehhhhhh"),
-                Commands.slash("trivia", "Pull up random trivia"),
+                new TriviaCmd().getCommandData(),
+                //Commands.slash("trivia", "Pull up random trivia"),
                 Commands.slash("mtg_search", "Look up cards on Scryfall")
                         .addOption(OptionType.STRING, "query", "Enter what you are looking for"),
                 Commands.slash("mtg_help", "[WIP] Ask... eugh.... AI for help")
