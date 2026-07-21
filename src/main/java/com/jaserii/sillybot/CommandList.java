@@ -90,6 +90,10 @@ public class CommandList extends ListenerAdapter {
                 final Link link = this.client.getOrCreateLink(guildId);
                 final var mngr = this.getOrCreateMusicManager(guildId);
 
+                if (!query.startsWith("http")) {
+                    query = "ytsearch:" + query;
+                }
+
                 link.loadItem(query).subscribe(new AudioLoader(event, mngr));
                 break;
 
