@@ -17,9 +17,7 @@ public class CommandListener extends ListenerAdapter {
     private final Map<String, IDiscordCommand> commands = new HashMap<>();
 
     /// Update constructor with each new command
-    public CommandListener(LavalinkClient lavalinkClient) {
-        LavalinkService lavalinkService = new LavalinkService(lavalinkClient);
-
+    public CommandListener(LavalinkService lavalinkService) {
         registerCommand(new TriviaCmd());
         registerCommand(new ScryfallCmd());
         registerCommand(new PlayCmd(lavalinkService));
