@@ -1,7 +1,6 @@
-package com.jaserii.sillybot;
+package com.jaserii.sillybot.scryfall;
 
-import com.jaserii.sillybot.interfaces.HelpAssistant;
-import com.jaserii.sillybot.interfaces.SyntaxAssistant;
+import dev.langchain4j.exception.HttpException;
 import dev.langchain4j.model.chat.ChatModel;
 import dev.langchain4j.model.googleai.GoogleAiGeminiChatModel;
 import dev.langchain4j.service.AiServices;
@@ -17,20 +16,12 @@ import java.time.Duration;
 public class ScryfallService {
     private static final Logger logger = LoggerFactory.getLogger(ScryfallService.class);
     private ChatModel syntaxModel;
-    private ChatModel helpModel;
-    private SyntaxAssistant syntaxAssistant;
-    private HelpAssistant helpAssistant;
+    private ISyntaxAssistant syntaxAssistant;
 
     public ScryfallService() {
 
         /* --- Uncomment if you want to Use OpenAI API format ---
         syntaxModel = OpenAiChatModel.builder()
-               .apiKey(System.getenv("API_KEY"))
-                .baseUrl(System.getenv("BASE_URL"))
-                .modelName(System.getenv("AI_MODEL"))
-                .build();
-
-        helpModel = OpenAiChatModel.builder()
                .apiKey(System.getenv("API_KEY"))
                 .baseUrl(System.getenv("BASE_URL"))
                 .modelName(System.getenv("AI_MODEL"))
@@ -41,16 +32,10 @@ public class ScryfallService {
                 .apiKey(System.getenv("API_KEY"))
                 .modelName(System.getenv("AI_MODEL"))
                 .returnThinking(false)
+                .timeout(Duration.ofMinutes(5))
                 .build();
 
-        helpModel = GoogleAiGeminiChatModel.builder()
-                .apiKey(System.getenv("API_KEY"))
-                .modelName(System.getenv("AI_MODEL"))
-                .returnThinking(false)
-                .build();
-
-        syntaxAssistant = AiServices.create(SyntaxAssistant.class, syntaxModel);
-        helpAssistant = AiServices.create(HelpAssistant.class, helpModel);
+        syntaxAssistant = AiServices.create(ISyntaxAssistant.class, syntaxModel);
     }
 
     /// Returns a URL containing cards matching user request.
@@ -59,27 +44,21 @@ public class ScryfallService {
     public String getScryfallURL(String query) {
         try {
             String syntax = syntaxAssistant.chat(query);
-            logger.info(syntax);
+            logger.info("Converted syntax: " + syntax);
             String url = "https://scryfall.com/search?q=" + URLEncoder.encode(syntax, StandardCharsets.UTF_8);
-            logger.info(url);
+            logger.info("URL: " + url);
             return url;
+        } catch (HttpException e) {
+            logger.error("HTTPException: " + e.statusCode());
+            // Check if the status code is 429 (Too Many Requests)
+            if (e.statusCode() == 429) {
+                return "Error: The daily AI request limit has been reached. Please try again tomorrow.";
+            }
+            // Handle other HTTP errors (e.g., 401 Unauthorized, 500 Server Error)
+            return "Error: An API error occurred (Status: " + e.statusCode() + ").";
         } catch (Exception e) {
             logger.error(e.getMessage());
-            return "===SEARCH ERROR===";
-        }
-    }
-
-    /// Return a generated response to a user question
-    /// @param query The question asked by the user
-    /// @return Generated and URL response
-    public String getMTGHelp(String query) {
-        try {
-            String response = helpAssistant.chat(query);
-            logger.info(response);
-            return response;
-        } catch (Exception e) {
-            logger.error(e.getMessage());
-            return "===HELP ERROR===";
+            return "Something went wrong. Whoever developed this catch message just lumped all exceptions together";
         }
     }
 }

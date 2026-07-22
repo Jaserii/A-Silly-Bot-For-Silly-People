@@ -1,14 +1,14 @@
 package com.jaserii.sillybot;
 
-import com.jaserii.sillybot.lavalink.AudioLoader;
-import com.jaserii.sillybot.lavalink.GuildMusicManager;
+import com.jaserii.sillybot.lavalink.sample.AudioLoader;
+import com.jaserii.sillybot.lavalink.sample.GuildMusicManager;
+import com.jaserii.sillybot.scryfall.ScryfallService;
+import com.jaserii.sillybot.trivia.TriviaService;
 import dev.arbjerg.lavalink.client.LavalinkClient;
 import dev.arbjerg.lavalink.client.Link;
-import dev.arbjerg.lavalink.client.player.Track;
 import net.dv8tion.jda.api.JDA;
 import net.dv8tion.jda.api.entities.Guild;
 import net.dv8tion.jda.api.entities.GuildVoiceState;
-import net.dv8tion.jda.api.entities.channel.concrete.VoiceChannel;
 import net.dv8tion.jda.api.entities.channel.middleman.AudioChannel;
 import net.dv8tion.jda.api.events.interaction.command.SlashCommandInteractionEvent;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
@@ -16,7 +16,6 @@ import org.apache.commons.text.StringEscapeUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.time.Duration;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -60,13 +59,14 @@ public class CommandList extends ListenerAdapter {
                     event.getHook().sendMessage(scryfallService.getScryfallURL(query)).queue();
                 break;
 
+                /*
             case "mtg_help":
                 query = (event.getOption("query") != null) ? event.getOption("query").getAsString() : "";
                 if (query.isBlank())
                     event.getHook().sendMessage("Please input something. ANYTHING!").queue();
                 else
                     event.getHook().sendMessage(scryfallService.getMTGHelp(query)).queue();
-                break;
+                break; */
 
             case "play":
                 query = (event.getOption("query") != null) ? event.getOption("query").getAsString() : "";

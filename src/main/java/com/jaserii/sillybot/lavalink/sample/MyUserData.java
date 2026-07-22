@@ -1,4 +1,4 @@
-package me.duncte123.testbot;
+package com.jaserii.sillybot.lavalink.sample;
 
 public record MyUserData(long requester) {
 }

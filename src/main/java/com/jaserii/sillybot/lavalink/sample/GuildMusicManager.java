@@ -1,4 +1,4 @@
-package com.jaserii.sillybot.lavalink;
+package com.jaserii.sillybot.lavalink.sample;
 
 import dev.arbjerg.lavalink.client.LavalinkClient;
 import dev.arbjerg.lavalink.client.Link;
@@ -27,9 +27,9 @@ public class GuildMusicManager {
         );
     }
 
+    // CUSTOM ADDED: Skips the current track by forcing it to be ended
     public void skip() {
         this.scheduler.onTrackEnd(Message.EmittedEvent.TrackEndEvent.AudioTrackEndReason.FINISHED);
-
     }
 
     public Optional<Link> getLink() {

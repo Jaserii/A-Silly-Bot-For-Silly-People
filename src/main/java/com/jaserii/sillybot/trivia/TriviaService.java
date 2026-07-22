@@ -1,4 +1,4 @@
-package com.jaserii.sillybot;
+package com.jaserii.sillybot.trivia;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
@@ -13,9 +13,9 @@ import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 
 public class TriviaService {
+    private static final Logger logger = LoggerFactory.getLogger(TriviaService.class);
     final String IO_ERR = "IO_ERR";
     final String INTERRUPT_ERR = "INTERRUPT_ERR";
-    private static final Logger logger = LoggerFactory.getLogger(TriviaService.class);
 
     /// Gather a random fact using Open Trivia DB API
     /// @return String fact
@@ -27,7 +27,7 @@ public class TriviaService {
         }
 
         String response = getResult(apiUrl);
-        logger.info(response);
+        logger.info("Raw JSON: " + response);
         switch (response) {
             case IO_ERR:
                 return "Erhm... IO Error!";
