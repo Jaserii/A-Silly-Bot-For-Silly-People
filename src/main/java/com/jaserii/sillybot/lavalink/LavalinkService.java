@@ -49,6 +49,7 @@ public class LavalinkService {
     /// @param client Adds the node to the client
     public void registerLavalinkNodes(LavalinkClient client) {
         List.of(
+                // Will show UnknownHostException if running this locally and not using the Dockerfile
                 client.addNode(
                         new NodeOptions.Builder()
                                 .setName(System.getenv("LAVALINK_HOST"))
