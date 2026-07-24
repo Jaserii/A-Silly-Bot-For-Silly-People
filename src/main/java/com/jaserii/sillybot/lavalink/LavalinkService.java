@@ -48,26 +48,26 @@ public class LavalinkService {
     /// Registers a Lavalink Node with the Lavalink Spring Boot Server
     /// @param client Adds the node to the client
     public void registerLavalinkNodes(LavalinkClient client) {
-        List.of(
-                // Will show UnknownHostException if running this locally and not using the Dockerfile
-                client.addNode(
-                        new NodeOptions.Builder()
-                                .setName(System.getenv("LAVALINK_HOST"))
-                                .setServerUri("ws://" + System.getenv("LAVALINK_HOST") + ":" + System.getenv("LAVALINK_PORT"))
-                                .setPassword(System.getenv("LAVALINK_PASSWORD"))
-                                .build()
-                )
-                /* ===== Uncomment if you wanna test it locally and not via Docker
-                ,
-                client.addNode(
-                        new NodeOptions.Builder()
-                                .setName("localhost")
-                                .setServerUri("ws://localhost")
-                                .setPassword(System.getenv("LAVALINK_PASSWORD"))
-                                .build()
-                )
-                */
+        var dockerClient = client.addNode(
+                new NodeOptions.Builder()
+                        .setName(System.getenv("LAVALINK_HOST"))
+                        .setServerUri("ws://" + System.getenv("LAVALINK_HOST") + ":" + System.getenv("LAVALINK_PORT"))
+                        .setPassword(System.getenv("LAVALINK_PASSWORD"))
+                        .build()
+        );
 
+        var localClient = client.addNode(
+                new NodeOptions.Builder()
+                        .setName("localhost")
+                        .setServerUri("ws://localhost")
+                        .setPassword(System.getenv("LAVALINK_PASSWORD"))
+                        .build()
+        );
+
+        List.of(
+                dockerClient
+                // Uncomment "localClient" if you want to test it locally/outside of Docker
+                //localClient
         ).forEach((node) -> {
             node.on(TrackStartEvent.class).subscribe((event) -> {
                 final LavalinkNode node1 = event.getNode();
