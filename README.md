@@ -9,6 +9,10 @@ Features (* means still in progress)
 ## How to Use
 Fill out the .env file with the appropriate API keys. Then simply run "docker compose up -d". That's it!
 
+Note: Based on the default application.yml file in the [Lavalink Docs](https://lavalink.dev/configuration/config/file.html#example-applicationyml), the default host, port, and password values are "0.0.0.0", "2333", and "youshallnotpass". Feel free to change them but make sure they match between .env and application.yml!
+
+For this software, "0.0.0.0" was changed to "lavalink" as that is the Docker container name for this bot to connect to.
+
 ## Important Notes on Music Function
 This bot uses [Lavalink](https://github.com/lavalink-devs/Lavalink) to enable audio playback, utilizing [Lavalink-client](https://github.com/lavalink-devs/Lavalink-Client) to make this bot an eligible client.
 
