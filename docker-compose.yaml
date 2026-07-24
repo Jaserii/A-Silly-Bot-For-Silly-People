@@ -25,6 +25,7 @@ services:
       - BOT_TOKEN=${BOT_TOKEN}
       - API_KEY=${API_KEY}
       - AI_MODEL=${AI_MODEL}
+      - BASE_URL=${BASE_URL}
     depends_on:
       - lavalink
     networks:
