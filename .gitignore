@@ -40,3 +40,7 @@ build/
 
 ### ENV file ###
 .env
+
+### Application YAML File  ###
+application.yaml
+application.yml

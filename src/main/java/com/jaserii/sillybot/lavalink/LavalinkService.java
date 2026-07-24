@@ -51,11 +51,21 @@ public class LavalinkService {
         List.of(
                 client.addNode(
                         new NodeOptions.Builder()
-                                .setName("localhost")
-                                .setServerUri("ws://0.0.0.0")
-                                .setPassword("youshallnotpass")
+                                .setName(System.getenv("LAVALINK_HOST"))
+                                .setServerUri("ws://" + System.getenv("LAVALINK_HOST") + ":" + System.getenv("LAVALINK_PORT"))
+                                .setPassword(System.getenv("LAVALINK_PASSWORD"))
                                 .build()
                 )
+                /* ===== Uncomment if you wanna test it locally and not via Docker
+                ,
+                client.addNode(
+                        new NodeOptions.Builder()
+                                .setName("localhost")
+                                .setServerUri("ws://localhost")
+                                .setPassword(System.getenv("LAVALINK_PASSWORD"))
+                                .build()
+                )
+                */
 
         ).forEach((node) -> {
             node.on(TrackStartEvent.class).subscribe((event) -> {

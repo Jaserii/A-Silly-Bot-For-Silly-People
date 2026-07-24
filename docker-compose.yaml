@@ -1,0 +1,37 @@
+services:
+  lavalink:
+    image: fredboat/lavalink:dev-alpine
+    container_name: lavalink
+    restart: unless-stopped
+    ports:
+      - "2333:2333"
+    volumes:
+      - ./application.yml:/opt/Lavalink/application.yml
+    networks:
+      - lavalink
+
+  sillybot:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: sillybot
+    restart: unless-stopped
+    environment:
+      # Pass internal Lavalink credentials to your bot
+      - LAVALINK_HOST=${LAVALINK_HOST}
+      - LAVALINK_PORT=${LAVALINK_PORT}
+      - LAVALINK_PASSWORD=${LAVALINK_PASSWORD}
+      - TRIVIA_API_URL=${TRIVIA_API_URL}
+      - BOT_TOKEN=${BOT_TOKEN}
+      - API_KEY=${API_KEY}
+      - AI_MODEL=${AI_MODEL}
+    depends_on:
+      - lavalink
+    networks:
+      - lavalink
+
+networks:
+  # create a lavalink network you can add other containers to, to give them access to Lavalink
+  lavalink:
+    name: lavalink
+    driver: bridge
